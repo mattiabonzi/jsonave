@@ -47,12 +47,20 @@ describe('@ and $ test', function () {
   it('actual', function () {
     expect(jsonPath({
       json: t1,
-      path: '\$'
+      path: '\\$'
+    })[0]).toEqual(t1['$']);
+    expect(jsonPath({
+      json: t1,
+      path: '$.\\$'
+    })[0]).toEqual(t1['$']);
+    expect(jsonPath({
+      json: t1,
+      path: '$.$'
     })[0]).toEqual(t1['$']);
     expect(jsonPath({
       json: t1,
       path: '$'
-    })[0]).toEqual(t1['$']);
+    })[0]).toEqual(t1);
     expect(jsonPath({
       json: t1,
       path: 'a$a'
@@ -63,11 +71,19 @@ describe('@ and $ test', function () {
     })[0]).toEqual(t1['@']);
     expect(jsonPath({
       json: t1,
+      path: '\\@'
+    })[0]).toEqual(t1['@']);
+    expect(jsonPath({
+      json: t1,
       path: '@'
     })[0]).toEqual(t1['@']);
     expect(jsonPath({
       json: t1,
       path: '$.$.@'
+    })[0]).toEqual(t1['$']['@']);
+    expect(jsonPath({
+      json: t1,
+      path: '$.\\$.\\@'
     })[0]).toEqual(t1['$']['@']);
     expect(jsonPath({
       json: t1,

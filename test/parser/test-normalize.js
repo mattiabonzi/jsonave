@@ -181,6 +181,12 @@ describe('parser normalize general', function () {
 describe('parser normalize $', function () {
   it('$', function () {
     var actual = parser.normalize('$');
+    var expected = [_n('root')];
+    expect(actual).toEqual(expected);
+  });
+  
+  it('\\$', function () {
+    var actual = parser.normalize('$');
     var expected = [_p('$')];
     expect(actual).toEqual(expected);
   });

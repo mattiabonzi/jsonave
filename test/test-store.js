@@ -14,12 +14,37 @@ describe('jsonpath store example default options', function () {
     expect(actual).toEqual(expected);
   });
 
+  it("$['store']['book'][*]['author']", function () {
+    var jp = jsonpath.instance('$.store.book[*].author');
+    var actual = jp(store);
+    var expected = store.store.book.map(function (book) {
+      return book.author;
+    });
+    expect(actual).toEqual(expected);
+  });
+
   it('$..author', function () {
     var jp = jsonpath.instance('$..author');
     var actual = jp(store);
     var expected = store.store.book.map(function (book) {
       return book.author;
     });
+    expect(actual).toEqual(expected);
+  });
+
+  it("$..['author']", function () {
+    var jp = jsonpath.instance('$..author');
+    var actual = jp(store);
+    var expected = store.store.book.map(function (book) {
+      return book.author;
+    });
+    expect(actual).toEqual(expected);
+  });
+
+  it("$['store'].*", function () {
+    var jp = jsonpath.instance('$.store.*');
+    var actual = jp(store);
+    var expected = [store.store.book, store.store.bicycle];
     expect(actual).toEqual(expected);
   });
 
@@ -583,10 +608,12 @@ describe('jsonpath store example wrap=false', function () {
     expect(actual).toEqual(expected);
   });
 
+  
   it('$', function () {
     var jp = jsonpath.instance('$', opts);
     var actual = jp(store);
-    var expected = null;
+    var expected = store;
     expect(actual).toEqual(expected);
   });
+  
 });
