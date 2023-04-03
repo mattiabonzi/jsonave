@@ -1,6 +1,6 @@
 {
   "name": "@amida-tech/jsonave",
-  "version": "1.0.3",
+  "version": "2.0.0-beta.1",
   "description": "A JSONPath implementation",
   "main": "./index.js",
   "directories": {
